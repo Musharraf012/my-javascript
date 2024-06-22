@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let d1 = [1, 2, 3, 5, 4, 2, 3]
+        // let d = new Set(d1)
+        // console.log(d)
+        // document.write(d)
+
+        let p1 = "This is the javascript. This is the javascript"
+        let p = new Map();
+        let q = p1.split(" ")
+        for (let i = 0; i < q.length; i++) {
+            if (!(p.has(q[i]))) {
+                p.set(q[i], 1);
+
+            }
+            else {
+                p.set(q[i], p.get(q[i]) + 1)
+
+            }
+
+        }
+        console.log(p)
+
+    </script>
+</body>
+
+</html>

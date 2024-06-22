@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="input1">
+    <input type="text" id="input2">
+    <input type="text" id="input3">
+    <input type="text" id="input4">
+    <button onclick="result()">Display Result</button>
+    <script>
+        function result(){
+        let inputs=document.getElementsByTagName("input")
+    let sum = 0;
+        for(let i=0;i<inputs.length;i++){
+            sum = sum + +(inputs[i].value);
+
+        }
+        console.log(sum);
+    }
+
+    function result(){
+        let inputs=document.getElementsByTagName("input")
+        // let even =inputs[0].value;
+       
+        for(i=0;i<inputs.length;i++){
+            
+
+            if(inputs[i].value%2==0){
+                even=inputs[i].value;
+                console.log(alert(even));
+            }
+           
+        }
+        
+    }
+    </script>
+</body>
+</html>

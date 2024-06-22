@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>JavaScript Validation</h2>
+
+    <p>Enter a number and click OK:</p>
+    <form action="">
+        <fieldset>
+            <legend>Form1</legend>
+            <input id="id1" type="number" min="100" max="300" required="">
+            <input id="id2" type="text" required="">
+
+
+
+            <input type="submit" value="ok" onclick="myFunction()">
+
+
+
+            <p>If the number is less than 100 or greater than 300, an error message will be displayed.</p>
+
+            <p id="demo"></p>
+    </form>
+
+    <script>
+        // function myFunction() {
+        //     const inpObj = document.getElementById("id1");
+        //     const inpObj1 = document.getElementById("id2");
+
+        //     if (!inpObj.checkValidity()) {
+        //         document.getElementById("demo").innerHTML = inpObj.validationMessage;
+        //     }
+        //     else if (inpObj1.checkValidity()) {
+        //         document.getElementById("demo").innerHTML = inpObj1.validationMessage
+
+        //     }
+
+
+        //     else {
+        //         document.getElementById("demo").innerHTML = "Input OK";
+        //     }
+        //     console.log(inpObj.checkValidity())
+
+        // } 
+        function myFunction() {
+            let text;
+            if (document.getElementById("id1").validity.rangeOverflow) {
+                text = "Value too large";
+            }
+            else if (document.getElementById("id1").validity.rangeUnderflow) {
+                text = "Value too small";
+            }
+            else if (document.getElementById("id2").validity.typeMismatch) {
+                text = "type is not matched"
+            }
+            document.getElementById("demo").innerHTML = text
+        }
+    </script>
+
+</body>
+
+</html>

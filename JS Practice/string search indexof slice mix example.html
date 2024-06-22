@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button onclick="Searchitem()">Search</button>
+    <div id="display"></div>
+    <script>
+       let cities = ["vadodara","mumbai","pune","bangloore"]
+        for(let i=0;i<cities.length;i++){
+            document.getElementById("display").innerHTML += `<div>${cities[i]}</div>`;
+
+        }
+        function Searchitem(){
+            document.getElementById("display").innerHTML=""
+            let searchterm = document.getElementById("inp").value
+            let value = new RegExp(searchterm,"i")
+            for(let i=0;i<cities.length;i++){
+                let index=cities[i].search(value)
+                if(cities[i].search(value)>=0){
+                    document.getElementById("display").innerHTML+=`<div><span style="color:red;">${ cities[i].substr(index,searchterm.length)}</span>${cities[i].slice(searchterm.length)}</div>`
+                }
+            }
+        }
+    </script>
+</body>
+</html>

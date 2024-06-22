@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="display" border="2px">        
+    </table>
+    <script>
+        let myedu=["10th","12th","bsc","msc"]
+        let education = myedu.map(function(value,index,arr){
+            return `<tr><th>${value}<td>${index}</td><td>${arr}</td></th></tr>` 
+        })
+        document.getElementById("display").innerHTML= education.join("")
+    </script>
+</body>
+</html>

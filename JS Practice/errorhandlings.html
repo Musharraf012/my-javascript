@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="test" id="term" />
+    <button onclick="throwError()">Display </button>
+    <script>
+
+    
+
+       function throwError()
+       {
+            let p= +document.getElementById("term").value;
+
+            try
+            {
+
+                if(p <10)
+                {
+                    throw Error("Invalid Value")
+                }
+            }
+            catch(error)
+            {
+                console.log(error);
+            }
+
+            finally
+            {
+
+                document.getElementById("term").value = "";
+                console.log("cleanup activity")
+            }
+       }
+
+    </script>
+    
+</body>
+</html>

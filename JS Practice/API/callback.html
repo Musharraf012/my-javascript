@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <table id="displayForComment"></table>
+    <table id="displayForPost"></table>
+
+    <script>
+
+
+        const callAPI = (url, display) => {
+
+            fetch(url).then(y => y.json()).then(y => {
+
+                display(y);
+            })
+
+        }
+
+        const displayForComments = (data) => {
+
+            let p = data.map((vale) => {
+
+                return (`<tr><td>${vale.email}</td></tr>`)
+
+            });
+
+
+            document.getElementById("displayForComment").innerHTML = p.join(" ");
+
+        }
+
+        const displayForPosts = (data) => {
+
+            let p = data.map((vale) => {
+
+                return (`<tr><td>${vale.body}</td></tr>`)
+
+            });
+
+
+            document.getElementById("displayForPost").innerHTML = p.join(" ");
+
+        }
+
+
+
+        callAPI("https://jsonplaceholder.typicode.com/comments", displayForComments);
+        callAPI("https://jsonplaceholder.typicode.com/posts", displayForPosts);
+
+    </script>
+
+
+</body>
+
+</html>

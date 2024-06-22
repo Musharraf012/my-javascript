@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="nmbr">
+    <div id="display">5</div>
+    <button onclick="addition()">+</button>
+    <button onclick="substraction()">-</button>
+    <script>
+        
+       function addition(){
+        let a = +(document.getElementById("nmbr").value)
+       let b = +(document.getElementById("display").innerHTML)
+
+
+
+        if(a>0){
+            document.getElementById("display").innerHTML=a + b;
+        }
+        else{
+            document.getElementById("display").innerHTML=++b
+        }
+
+
+
+       }
+       function substraction(){
+        let a = +(document.getElementById("nmbr").value)
+       let b = +(document.getElementById("display").innerText)
+
+       if(a>0){
+            document.getElementById("display").innerHTML=b-a;
+        }
+        else{
+            document.getElementById("display").innerHTML=--b
+        }
+        
+    }
+
+
+
+    </script>
+</body>
+</html>

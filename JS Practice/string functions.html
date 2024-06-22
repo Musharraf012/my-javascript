@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button onclick="searchfor()">Search</button>
+    <button onclick="clearr()">clear</button>
+    <ul id="display"></ul>
+    <script>
+        // let mystring = "ABC  DEF GHI";
+
+        // let shortName = mystring.slice(0,1) + " " + mystring.substr(mystring.indexOf("")+1,1);
+        // console.log(shortName);
+
+        cities = ["vadodara", "valsad", "surat", "surendranagar" , "vapi","mumbai"]
+           
+
+       
+                
+                for(let i=0;i<cities.length;i++){
+
+                    document.getElementById("display").innerHTML+=`<li>${cities[i]}</li>`
+
+                }
+                function searchfor(){
+                    document.getElementById("display").innerHTML=""
+                    let a = document.getElementById("inp").value
+                    for(let i=0;i<cities.length;i++){
+                    if(cities[i].indexOf(a)>=0){
+                        document.getElementById("display").innerHTML+=`<li>${cities[i]}</li>`
+                    }
+}
+                }
+                function clearr(){
+                    cities = ["vadodara", "valsad", "surat", "surendranagar" , "vapi","mumbai"]         
+                    document.getElementById("display").innerHTML=""
+           for(let i=0;i<cities.length;i++){
+
+               document.getElementById("display").innerHTML+=`<li>${cities[i]}</li>`
+
+           }
+
+                }
+                
+
+        
+
+
+    </script>
+</body>
+</html>

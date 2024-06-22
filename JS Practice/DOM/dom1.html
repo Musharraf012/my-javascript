@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <input type="text" id="inpvalue" />
+        <button onclick="save()">save</button>
+
+
+        <table>
+            <tr id="firsttr">
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="fisttd">4
+                </td>
+                <td>
+                    <button>+</button>
+                </td>
+                <td>
+                    <button>-</button>
+                </td>
+            </tr>
+
+
+            <tr id="firsttr">
+
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="fisttd">4
+                </td>
+
+                <td>
+                    <button>+</button>
+                </td>
+                <td>
+                    <button>-</button>
+                </td>
+
+            </tr>
+
+        </table>
+        <script>
+            function save(a) {
+                const inpp = +(document.getElementById("inpvalue").value)
+                let p = document.querySelectorAll(".fisttd").innerHTML
+                console.log(p)
+                p.forEach(a => {
+
+                    document.getElementById("firsttr").firstElementChild.nextElementSibling.innerHTML = (p + inpp)
+
+                });
+
+
+            }
+        </script>
+
+    </body>
+
+    </html>
+</body>
+
+</html>

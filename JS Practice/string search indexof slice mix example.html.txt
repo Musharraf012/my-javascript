@@ -1,0 +1,13 @@
+{
+    "title": "web devlopment",
+    "maxApplicants": 100,
+    "maxPositions": 30,
+    "deadline": "2024-04-18T05:46",
+    "skillsets": [
+        "hardworking",
+        "multitasking"
+    ],
+    "jobType": "Full Time",
+    "duration": 0,
+    "salary": "40000"
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let numbers = [1,2,3,77,84,65,20,44]
+        // document.write(numbers.join(" ") + "<br>")
+
+        // let oddNumbers=numbers.filter(function(value){
+        //     return value%2!=0
+        // })
+        // document.write(oddNumbers.join(" "))
+
+        let cities = ["vadodara","Ahemdabad","surat","test","ABC"]
+     
+        let acity = cities.filter(function(value){
+            return value.search(/A/i)>=0
+        })
+        document.write(acity.join("  "))
+    </script>
+</body>
+</html>

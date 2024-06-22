@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" value="" id="txt"/>
+    <input type="submit" value="save" onclick="saveInfo()"/>
+    
+    <input type="button" value="clear" onclick="clearItems()"/>
+    <ul id="display"></ul>
+    <script>
+
+        let array = [];
+
+      
+        function saveInfo()
+        {
+
+            let d = document.getElementById("txt").value;
+
+            array.push(d);
+
+            display();
+
+        }
+        function clearItems()
+        {
+                array.splice(0);
+
+                display();
+        }
+
+        function display()
+        {
+            let d = array.map(function(value,index){
+
+                return `<li>${value}   <button onclick="deletevalue(${index})">Delete</button> </li>`
+
+            })
+
+            document.getElementById("display").innerHTML = d.join(" ");
+        }
+
+        function deletevalue(index)
+        {
+
+            array.splice(index,1);
+
+            display();
+
+        }
+
+        
+
+    </script>
+
+</body>
+</html>

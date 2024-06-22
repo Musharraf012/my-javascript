@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let obj = { firstName: "Test", lastName: "Test1" };
+        let d = { address: "Vadodara" }
+
+        let obj1 = { ...obj, ...d };
+
+
+
+
+        obj1.firstName = "abc";
+
+        let array = [2, 3, 4, 5, 6, 7];
+        let array1 = [4, 5, 6];
+
+        let op = [...array];
+        op[0] = 123
+
+        console.log(op);
+        console.log(array1);
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="para">This is the Javascript</p>
+    <input type="text" id="inp"> <button onclick="search()">Search index</button><br>
+    <div id="display">
+
+    </div>
+    <script>
+     
+
+        function search(){
+            let p = document.getElementById("para").innerHTML
+        let a = document.getElementById("inp").value
+        let value = new RegExp(a,"i")
+   
+            document.getElementById("display").innerHTML=p.search(value);
+
+
+        }
+    </script>
+</body>
+</html>

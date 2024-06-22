@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2px" id="display"></table>
+    <Script>
+        fetch("https://jsonplaceholder.typicode.com/comments").then(y => y.json()).then(y => {
+            console.log(y)
+            display(y)
+        })
+        let colskip = ["postId", "body"]
+        const display = (d) => {
+            let p = d.map((value) => {
+                let x = ''
+                for (const key in value) {
+                    if (!colskip.includes(key)) {
+                        x += `<td>${value[key]}</td>`
+                    }
+
+                }
+                return `<tr>${x}</tr>`
+            })
+            document.getElementById("display").innerHTML = p.join(" ")
+
+        }
+    </Script>
+</body>
+
+</html>

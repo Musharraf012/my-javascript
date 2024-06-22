@@ -1,0 +1,184 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="firstName" placeholder="Enter your Firstname" name="fname" onchange="myFuc()"
+        onkeypress="myFunc(event)" onblur="myValue()"> <span id="fname"></span><br><br>
+    <input type="text" id="lastName" placeholder="Enter your Lastname" name="lname" onchange="myFuc()"
+        onkeypress="myFunc(event)" onblur="myValue()"><span id="lname"></span><br><br>
+    <input type="text" id="title" placeholder="Enter Title" name="ttl" onchange="myFuc()" onkeypress="myFunc(event)"
+        onblur="myValue()"><span id="ttl"></span><br><br>
+    <input type="email" id="email" placeholder="Enter your Email" name="eml" onchange="myFuc()" onblur="myValue()"><span
+        id="eml"></span><br><br>
+    <input type="password" id="password" placeholder="Enter your Password" name="pswd" onchange="myFuc()"
+        onblur="myValue()"><span id="pswd"></span><br><br>
+    <input type="password" id="confirmPassword" placeholder="confirm your password" onchange="myFuc()" name="cpswd"
+        onblur="myValue()"><span id="cpswd"></span><br><br>
+    <input type="checkbox" id="acceptTerms" name="tick" onblur="myValue()"><span id="tick"></span><br><br>
+    <button onclick="regi()">registration</button>
+    <script>
+        let obj;
+        const regi = () => {
+            obj = {
+                "firstName": document.getElementById("firstName").value,
+                "lastName": document.getElementById("lastName").value,
+                "title": document.getElementById("title").value,
+                "email": document.getElementById("email").value,
+                "password": document.getElementById("password").value,
+                "confirmPassword": document.getElementById("confirmPassword").value,
+                "acceptTerms": document.getElementById("acceptTerms").checked
+            }
+
+
+            fetch("https://real-pear-fly-kilt.cyclic.app/accounts/register", {
+                method: "POST",
+                body: JSON.stringify(obj),
+                headers: {
+                    'Content-Type': "application/json"
+                }
+            })
+                .then(y => y.json())
+                .then(y => {
+                    console.log(y)
+                })
+        }
+
+
+
+        // validation code
+        const cop = document.getElementById("password")
+        const copp = document.getElementById("confirmPassword")
+        cop.addEventListener("copy", (e) => { e.preventDefault() })
+        copp.addEventListener("copy", (e) => { e.preventDefault() })
+        cop.addEventListener("paste", (e) => { e.preventDefault() })
+        copp.addEventListener("paste", (e) => { e.preventDefault() })
+
+        function myValue(e) {
+            name = event.target.name
+            value = event.target.value
+            console.log(event)
+
+            switch (name) {
+                case "fname":
+                    {
+                        if (!value) {
+                            document.getElementById(name).innerHTML = "please enter your firstname"
+
+                        }
+
+
+
+                    }
+                    break;
+                case "lname":
+                    {
+                        if (!value) {
+                            document.getElementById(name).innerHTML = "please enter your lastname"
+                        }
+
+                    }
+                    break;
+                case "ttl":
+                    {
+                        if (!value) {
+                            document.getElementById(name).innerHTML = "please enter your Title"
+                        }
+
+                    }
+                    break;
+                case "eml":
+                    {
+                        if (!value) {
+                            document.getElementById(name).innerHTML = "please enter your Email"
+                        }
+                        // else {
+                        //     console.log(email.value)
+                        //     if (!(email.value.includes('@'))) {
+                        //         document.getElementById(name).innerHTML = "please enter valid email"
+
+
+                        //     }
+
+                        // }
+
+                    }
+                    break;
+                case "pswd":
+                    {
+                        if (!value) {
+                            document.getElementById(name).innerHTML = "please enter your Password"
+                        }
+
+                    }
+                    break;
+                case "cpswd":
+                    {
+                        if (!value) {
+                            document.getElementById(name).innerHTML = "please confirm your Password"
+                        }
+
+                    }
+                    break;
+
+            }
+
+        }
+        function myFunc(e) {
+            if ((e.key >= "a" && e.key <= "z") || (e.key >= "A" && e.key <= "Z")) {
+                e.returnValue = true
+            }
+            else {
+                e.returnValue = false
+
+            }
+
+        }
+        function myFuc() {
+            firstName.value = firstName.value.toUpperCase()
+            lastName.value = lastName.value.toUpperCase()
+            title.value = title.value.toUpperCase()
+            switch (name) {
+                case "eml": {
+                    if (!(email.value.includes('@') && email.value.includes('.com'))) {
+
+                        document.getElementById("eml").innerHTML = "please provide proper email"
+                    }
+                }
+                    break;
+                case "pswd": {
+                    if (!(password.value.length >= 6 && password.value.length <= 14)) {
+
+                        document.getElementById("pswd").innerHTML = "please length must be between 6-14"
+                    }
+                    else if (!(password.value.includes('@'))) {
+                        document.getElementById("pswd").innerHTML = "password must includes @"
+                    }
+                }
+                    break;
+                case 'cpswd': {
+                    if (password.value !== confirmPassword.value) {
+                        console.log(password.value)
+                        console.log(confirmPassword.value)
+                        document.getElementById("cpswd").innerHTML = "password is not matched"
+                    }
+                    break;
+                }
+
+
+            }
+
+
+        }
+
+
+    </script>
+</body>
+
+</html> 
+

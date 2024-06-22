@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="indian">
+    <button onclick="canada()">display $</button>
+    <button onclick="onetime()">OTP</button>
+    <div id="display"></div>
+    <div id="display1"></div>
+   
+
+    <script>
+       
+        function canada(){
+            let indian = +(document.getElementById("indian").value)
+            document.getElementById("display").innerHTML = (+(indian/61.53).toFixed(2));
+        }
+
+        function onetime(){
+            let d =  Math.trunc(Math.random() *1000000);
+            document.getElementById("display1").innerHTML = d.toPrecision(6);
+        }
+        
+
+    </script>
+</body>
+</html>

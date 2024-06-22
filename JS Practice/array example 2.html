@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="searchTerm">
+    <button onclick="search()">Search</button>
+     <ul id="display"><b>CITIES</b>
+
+    </ul>
+    <script>
+        let array = ["vadodara","pune","surat","ahmedabad","vapi"]
+
+
+        function display(){
+    let i = 0;
+while(i<array.length){
+    document.getElementById("display").innerHTML += "<li>"+array[i]+"</li>"
+    i=i+1
+
+}
+}
+
+function search(){
+    let i = 0;
+    let searchTerm = document.getElementById("searchTerm").value
+    document.getElementById("display").innerHTML="";
+    do{
+        if(array[i].includes(searchTerm)){
+            document.getElementById("display").innerHTML+=  "<li>"+array[i]+"</li>"
+           
+
+        }
+        i=i+1
+    }while(i<array.length);
+}
+display()
+    </script>
+    
+</body>
+</html>

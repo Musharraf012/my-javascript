@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="name" placeholder="name">
+    <input type="password" id="password" placeholder="password">
+    <button id="btn">Submit</button>
+    <table id="display" border="1px">
+    </table>
+    <script>
+        let index = -1;
+        const toDolist = []
+        const addData = document.getElementById("btn")
+        const submitData = () => {
+            let obj = {
+                name: document.getElementById("name").value,
+                password: document.getElementById("password").value
+            }
+
+            if (index < 0) { toDolist.push(obj) }
+            else {
+                toDolist.splice(index, 1, obj)
+            }
+            displayData()
+        }
+        const displayData = () => {
+            let p = toDolist.map((v, index) => {
+                return ` <tr><td>${v.name}</td><td>${v.password}</td><td><button onclick="deleteItem('${index}')">Delete</button><button onclick="editItem('${index}')">Edit</button></td></tr>`
+            })
+            document.getElementById("display").innerHTML = p.join(" ")
+            localStorage.setItem("data", JSON.stringify(toDolist))
+        }
+        addData.addEventListener("click", submitData)
+
+        function deleteItem(ind) {
+            toDolist.splice(ind, 1)
+            displayData()
+        }
+
+        function editItem(ind) {
+            index = ind
+            console.log(toDolist[ind].name);
+            document.getElementById("name").value = toDolist[ind].name
+            document.getElementById("password").value = toDolist[ind].password
+
+        }
+    </script>
+</body>
+
+</html>

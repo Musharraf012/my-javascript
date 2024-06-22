@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="fetchData()">
+    <form action="">
+        <input type="text" id="name" placeholder="name">
+        <input type="text" id="joiningDate" placeholder="joiningDate">
+        <input type="number" id="salary" placeholder="salary">
+        <input type="text" id="performance" placeholder="performance">
+        <button type="submit" id="btn">Submit</button>
+    </form>
+    <table id="display" border="1px"></table>
+
+    <script>
+        let jsn = [];
+        let jsnind;
+        let addData = document.getElementById("btn")
+        let index = -1
+        let fetchData = async () => {
+            let url = await fetch("https://66371c24288fedf6937f753d.mockapi.io/employee/employeeData");
+            let data = await url.json()
+            console.log(data)
+            displayData(data)
+            jsn = data;
+            // localStorage.setItem("data", JSON.stringify(data))
+
+        }
+
+        let displayData = (a) => {
+            let p = a.map((v, index) => {
+                return `<tr><td>${v.name}</td><td>${v.salary}</td><td>${v.joiningDate}</td><td>${v.performance}</td><td><button onclick ="deleteData('${v.id}')">Delete</button><button onclick ="editData('${index}')">Edit</button></td></tr>`
+            })
+            document.getElementById("display").innerHTML = p.join(" ")
+        }
+        // let t = localStorage.getItem("data");
+        let submitData = (e) => {
+            e.preventDefault()
+            if (index < 0) {
+                let obj = {
+                    name: document.getElementById("name").value,
+                    joiningDate: document.getElementById("joiningDate").value,
+                    salary: document.getElementById("salary").value,
+                    performance: document.getElementById("performance").value
+                }
+
+                fetch("https://66371c24288fedf6937f753d.mockapi.io/employee/employeeData", {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'Application/json',
+                        // "Authorization": `bearer ${t}`
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+                    .then(y => {
+                        location.href = "finalexam.html"
+                        displayData(y)
+
+
+                    })
+            }
+            else {
+                let forEdit = async () => {
+                    let obj1 = {
+                        name: document.getElementById("name").value,
+                        joiningDate: document.getElementById("joiningDate").value,
+                        salary: document.getElementById("salary").value,
+                        performance: document.getElementById("performance").value
+                    }
+                    let url = await fetch(`https://66371c24288fedf6937f753d.mockapi.io/employee/employeeData/${jsnind.id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                'content-type': 'Application/json',
+                                // "Authorization": `bearer ${t}`
+                            },
+                            body: JSON.stringify(obj1)
+
+                        }
+                    );
+                    let data = await url.json();
+                    location.href = "finalexam.html"
+
+
+                }
+                forEdit()
+            }
+        }
+
+        addData.addEventListener("click", submitData)
+
+        const deleteData = (v) => {
+            let forDelete = async () => {
+                let url = await fetch(`https://66371c24288fedf6937f753d.mockapi.io/employee/employeeData/${v}`,
+                    {
+                        method: "DELETE",
+                        headers: {
+                            'content-type': 'Application/json',
+                            // "Authorization": `bearer ${t}`
+                        },
+
+                    }
+                );
+                let data = await url.json();
+                location.href = "finalexam.html"
+
+
+            }
+            forDelete()
+
+        }
+
+        const editData = (v) => {
+            jsnind = jsn[v]
+            index = v
+            console.log(jsn[v].name)
+            document.getElementById("name").value = jsn[v].name
+            document.getElementById("salary").value = jsn[v].salary
+            document.getElementById("joiningDate").value = jsn[v].joiningDate
+            document.getElementById("performance").value = jsn[v].performance
+
+        }
+
+    </script>
+</body>
+
+</html>

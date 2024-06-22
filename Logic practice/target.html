@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <script>
+       let num =[2,6,5,7];
+    let target = 4;
+    let sum;
+   
+    for(i=0;i<=num.length-1;i++){
+        
+      for(j=0;j<i;j++){
+        sum=num[i]+num[j];
+        console.log(sum)
+        if(sum==target){
+            console.log(j,i)
+            document.write(j,i)
+            
+        }
+      }
+    }
+ </script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numbers =[2,1,5,4,8,5,2];
+       // let delete = [];
+        let num = 2
+        
+    //  let p = numbers.filter((value)=>{
+        
+    //     return value!==num
+        
+        
+        
+    //  })
+    //  console.log(p) 
+    let p = numbers.reduce((pre,value)=>{
+        if(!(numbers.includes(num))){
+            return value
+        }
+        console.log(value)
+    },[])
+    
+    
+    </script>
+</body>
+</html>

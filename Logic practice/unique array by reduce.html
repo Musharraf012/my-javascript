@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cities =[1,5,6,8,8,7,6,7,1]
+
+        let original = cities.reduce((pre,value)=>{
+            if(pre.includes(value)==false){
+                pre.push(value)
+                return pre
+            }
+            
+            document.write(pre)
+        },[])
+        
+    </script>
+</body>
+</html>

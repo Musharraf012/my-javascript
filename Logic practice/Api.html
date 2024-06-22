@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body onload="getData()">
+
+
+    <input type="text" placeholder="name" id="name">
+    <input type="text" placeholder="class" id="class">
+    <input type="text" placeholder="result" id="result">
+    <input type="text" placeholder="passingyear" id="passingyear">
+    <button type="submit" id="btn">submit</button>
+
+
+    <table id="display" border="1px"></table>
+    <script>
+        //for fetch api
+        let jsn = []
+        let ind = -1;
+        let jsnindex;
+        const getData = async () => {
+            let url = await fetch('https://66334080f7d50bbd9b48b499.mockapi.io/students/stu');
+            let p = await url.json()
+            jsn = p
+            console.log(p)
+            localStorage.setItem("data", JSON.stringify(p))
+            displayData(p)
+
+        }
+
+        // for display
+        const displayData = (g) => {
+            let data = g.map((v, index) => {
+                return `<tr><td>${v.id}</td><td>${v.name}</td><td>${v.class}</td><td>${v.result}</td><td>${v.passingyear}</td><td><button onclick="deleteItem('${v.id}')">Delete</button><button onclick="editItem('${index}')">Edit</button></td></tr>`
+            })
+            document.getElementById('display').innerHTML = data.join(" ")
+        }
+        //for add data
+        const addData = document.getElementById("btn")
+        const addNewData = () => {
+
+            if (ind < 0) {
+                const fetchNewApi = async () => {
+                    alert("hello")
+                    let obj = {
+                        name: document.getElementById("name").value,
+                        result: document.getElementById("result").value,
+                        class: document.getElementById("class").value,
+                        passingyear: document.getElementById("passingyear").value,
+                    }
+                    let t = localStorage.getItem("data")
+                    console.log(t)
+                    let w = await fetch('https://66334080f7d50bbd9b48b499.mockapi.io/students/stu',
+                        {
+                            method: "POST",
+                            headers: {
+                                'content-type': 'Application/json',
+                                "Authorization": `bearer ${t}`
+                            },
+                            body: JSON.stringify(obj)
+                        });
+                    let q = await w.json()
+                    location.href = "Api.html"
+                    displayData(q)
+                }
+                fetchNewApi()
+            }
+
+            if (ind > 0) {
+                let obj = {
+                    name: document.getElementById("name").value,
+                    class: document.getElementById("class").value,
+                    result: document.getElementById("result").value,
+                    passingyear: document.getElementById("passingyear").value,
+                }
+                let t = localStorage.getItem("data")
+                fetch(`https://66334080f7d50bbd9b48b499.mockapi.io/students/stu/${jsnindex.id}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            'content-type': 'Application/json',
+                            "Authorization": `bearer ${t}`
+                        },
+                        body: JSON.stringify(obj)
+
+
+                    })
+                    .then(y => y.json())
+                    .then(y => {
+                        location.href="Api.html"
+                        displayData(y)
+                    })
+
+            }
+        }
+        addData.addEventListener('click', addNewData)
+
+        const deleteItem = (v) => {
+            let t = localStorage.getItem("data")
+
+            fetch(`https://66334080f7d50bbd9b48b499.mockapi.io/students/stu/${v}`, {
+                method: "DELETE",
+                headers: {
+                    'content-type': 'Application/json',
+                    "Authorization": `bearer ${t}`
+                }
+            })
+                .then(y => y.json)
+                .then(y => {
+                    location.href = "Api.html"
+                    displayData(y)
+                })
+        }
+
+        const editItem = (v) => {
+            ind = v
+            let jsnind = jsn[v]
+            jsnindex = jsnind
+            console.log(jsnind)
+            document.getElementById("name").value = jsnindex.name
+            document.getElementById("class").value = jsnindex.class
+            document.getElementById("result").value = jsnindex.result
+            document.getElementById("passingyear").value = jsnindex.passingyear
+        }
+    </script>
+</body>
+
+</html>

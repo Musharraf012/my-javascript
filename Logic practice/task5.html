@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button onclick="search()">search</button>
+    <div id="inpp"></div>
+    <div id="display"></div>
+    <script>
+        let Arr =[2,5,7,9,8,1]
+        
+        
+        document.getElementById("inpp").innerHTML= Arr
+        
+        function search(){
+         
+          let target = document.getElementById("inp").value 
+          let p = Arr.filter((v,index)=>{
+            if(v==target){
+              return v == target
+            alert("i")
+            console.log(Arr.indexOf(+(p)))
+          }
+          else{
+            alert("e")
+              console.log("err")
+          }
+            
+          })
+         
+         
+        }
+ 
+    //     function search(){
+    //         let target = document.getElementById("inp").value
+        
+    //   let ind =  Arr.findIndex((v,index)=>{
+        
+    //     return v==target
+       
+    //   })
+    //   if(ind==-1){
+        
+    //   Arr.push(target)
+    //    let p= Arr.sort((a,b)=>{
+    //    return a - b
+    //    })
+    //    document.getElementById("display").innerHTML="Sorted Array is: "+ p.join(" ")
+
+    //   }
+    //   else{
+    //     document.getElementById("display").innerHTML= "index is: "+ ind
+    //   }
+    // }
+      
+       
+    
+    </script>
+    
+</body>
+</html>

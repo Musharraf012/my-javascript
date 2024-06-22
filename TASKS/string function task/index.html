@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <select id="opt">
+        <option id="option1">start with</option>
+        <option >end with</option>
+        <option >contain</option>
+    </select>
+    <button onclick="searchFor()">search</button>
+    <ul id="display"></ul>
+    <script>
+        Cities = ["vadodara","daman","surat","jamnagar","vapi","surendranagar","diu"]
+        for(let i = 0;i<Cities.length;i++){
+            document.getElementById("display").innerHTML += `<li>${Cities[i]}</li>`
+        }
+
+        function searchFor(){
+            document.getElementById("display").innerHTML=""
+            let a = document.getElementById("inp").value
+            
+            let b = document.getElementById("opt").value
+            let c = document.getElementById("option1").value
+            for(let i=0;i<Cities.length;i++){
+            if(b==c && a==Cities[i].slice(0,1)) {
+                document.getElementById("display").innerHTML+= `<li>${Cities[i]}</li>`
+ 
+            }
+            else if(b== "end with" && a==Cities[i].slice(-1)){
+                document.getElementById("display").innerHTML+= `<li>${Cities[i]}</li>`
+                
+
+            }
+
+            else if(b== "contain" && Cities[i].indexOf(a)>=0){
+                document.getElementById("display").innerHTML+= `<li>${Cities[i]}</li>`
+                
+
+            }
+            
+           
+        }
+
+        }
+
+    </script>
+</body>
+</html>

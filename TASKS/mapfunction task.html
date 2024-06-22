@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <table border="1px">
+        <tr>
+            <th>Id</th>
+            <td>1</td>
+        </tr>
+        <tr>
+            <th>name</th>
+            <td>Leanne Graham</td>
+        </tr>
+
+    </table> -->
+    <table id="display" border="2px"></table>
+    <script>
+        let data =[
+  {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+   
+  },
+  {
+    "id": 2,
+    "name": "Ervin Howell",
+    "username": "Antonette",
+    "email": "Shanna@melissa.tv",
+  }
+]
+let mydata = data.map(function(value){
+            return `<tr><th>${value.id}<td>${value.name}</td><td>${value.username}</td><td>${value.email}</td></th></tr>` 
+        })
+        document.getElementById("display").innerHTML= mydata.join("")
+    </script>
+</body>
+</html>

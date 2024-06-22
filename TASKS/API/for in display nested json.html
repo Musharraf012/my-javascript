@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="search"> <button onclick="search()">Search</button>
+    <table id="display" border="1px"></table>
+    <script>
+        let p = []
+        fetch("https://jsonplaceholder.typicode.com/users").then(y => y.json()).then(y => {
+            display(y)
+            console.log(y)
+            p = y
+        })
+        function display(d) {
+            let p = d.map((v) => {
+                let x = ''
+                for (const key in v) {
+                    x += recu(v[key])
+
+                }
+                return `<tr>${x}</tr>`
+            })
+            function recu(k) {
+                let x = ''
+                if (typeof k == "object") {
+                    for (const key in k) {
+                        if (typeof k[key] == "object") {
+                            x += recu(k[key])
+                        }
+                        else {
+                            x += `<td>${k[key]}</td>`
+                        }
+                    }
+                }
+                else {
+                    x += `<td>${k}</td>`
+                }
+                return x
+
+            }
+            document.getElementById("display").innerHTML = p.join(" ")
+        }
+
+        const search = (d, index) => {
+            let z = document.getElementById("search").value
+
+
+            let data = p.filter((y) => {
+                return r(y).includes(z)
+            })
+            display(data)
+
+        }
+        const r = (d) => {
+            let g = ''
+            for (const key in d) {
+                if (typeof d[key] == "object") {
+                    g += r(d[key])
+                }
+                else {
+                    g += `${d[key]}`
+                }
+            }
+            return g
+        }
+
+
+        
+
+
+    </script>
+
+</body>
+
+</html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table id="display" border="1px"></table>
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/users").then(y => y.json()).then(y => {
+            display(y)
+            console.log(y)
+        })
+        function display(d) {
+            let p = d.map((v) => {
+                let x = ''
+                for (const key in v) {
+                    if (typeof v[key] === "object") {
+                        x += recu(v[key])
+                    }
+                    else {
+                        x += <td>${v[key]}</td>
+                    }
+
+                }
+
+                return <tr>${x}</tr>
+            })
+            function recu(k) {
+                let x = ''
+
+                for (const key in k) {
+                    if (typeof k[key] == "object") {
+                        x += recu(k[key])
+                    }
+                    else {
+                        x += <td>${k[key]}</td>
+                    }
+                }
+                return x
+
+            }
+            document.getElementById("display").innerHTML = p.join(" ")
+        }
+
+
+    </script>
+
+</body>
+
+</html> -->

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inpvalue"> <button onclick="SearchValue()"> Search</button>
+    <table id="displayData" border="1px">
+
+    </table>
+    <script>
+        let z = []
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(y => y.json())
+            .then(y => {
+                console.log(y);
+                display(y)
+                z = y
+            })
+        const display = (data) => {
+            let p = data.map((v) => {
+                let x = ''
+                for (const key in v) {
+                    x += recu(v[key])
+
+                }
+                return `<tr>${x}</tr>`
+            })
+
+            function recu(k) {
+                let x = ''
+                if (typeof k == "Object") {
+                    for (const key in k) {
+                        if (typeof k[key] == "object") {
+                            x += recu(k[key])
+                        }
+                        else {
+                            x += `<td>${k[key]}<td>`
+                        }
+
+                    }
+
+                }
+                else {
+                    x += `<td>${k}</td>`
+                }
+                return x
+
+            }
+            document.getElementById("displayData").innerHTML = p.join(" ")
+        }
+
+        const SearchValue = (d) => {
+            let inp = document.getElementById("inpvalue").value
+            let srch = z.filter((v) => {
+                return r(v).includes(inp)
+            })
+            display(srch)
+        }
+        const r = (s) => {
+            let g = ''
+            for (const key in s) {
+                if (typeof s[key] == "object") {
+                    g += r(s[key])
+                }
+                else {
+                    g += `${s[key]}`
+                }
+            }
+            return g
+
+        }
+
+    </script>
+</body>
+
+</html>

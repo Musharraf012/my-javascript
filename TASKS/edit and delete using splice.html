@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="text" id="textbox1">
+   <input type="number" id="textbox2">
+   <button onclick="addValue()">Enter</button>
+   <table id="display" border="2px"></table>
+    <script>
+        let toDoitems=[];
+        let ind = -1
+        
+        
+        function addValue(){
+            let item1 = document.getElementById("textbox1").value;
+            let item2 = document.getElementById("textbox2").value;
+            let obj= {
+                        name:item1,
+                        num:item2,
+                     }
+            if(ind>=0){
+                toDoitems.splice(ind,1,obj)
+            }
+            else{
+                toDoitems.push(obj)
+            }
+        display();}
+        function display(){
+            let p = toDoitems.map(function(value,index){
+                return `<tr><td>${value.name} <button onclick="deleteItem(${index})">delete</button> <button onclick="editItem(${index})">Edit</button></td><td>${value.num}</td></tr>`
+            })
+            document.getElementById("display").innerHTML=p.join("")
+        }
+        function deleteItem(index){
+            toDoitems.splice(index,1);
+            display()
+            alert("p")
+        }
+        function editItem(index){
+            ind=index;
+
+           document.getElementById("textbox1").value=toDoitems[ind].name;
+           document.getElementById("textbox2").value=toDoitems[ind].num;
+
+        }
+   </script>
+</body>
+</html>

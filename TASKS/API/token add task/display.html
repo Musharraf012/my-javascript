@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2px" id="display"></table>
+    <div id="button"></div>
+    <script>
+        let jsn;
+        let pageNumber = 5
+        let pageSize;
+        function buttons(n) {
+            pageSize = Math.ceil(n.length / pageNumber)
+            for (i = 1; i <= pageSize; i++) {
+                let start = (i - 1) * pageSize
+                let end = start + pageSize
+                document.getElementById("button").innerHTML += `<button onclick="display(jsn,${start},${end})">${i}</button>`
+
+
+            }
+        }
+        fetch("https://6603a1a62393662c31cf4e9b.mockapi.io/percentage",
+        )
+            .then(y => y.json())
+            .then(y => {
+                console.log(y)
+                display(y, 0, pageSize)
+                buttons(y)
+                jsn = y
+            })
+        function display(a, start, end) {
+            let p = a.slice(start, end).map((v) => {
+                return `<tr><td>${v.id}</td><td>${v.name}</td><td>${v.percentage}</td><td>${v.avatar}</td><td>${v.Result}</td></tr>`
+            })
+            document.getElementById("display").innerHTML = p.join(" ")
+            localStorage.setItem("students", JSON.stringify(a))
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

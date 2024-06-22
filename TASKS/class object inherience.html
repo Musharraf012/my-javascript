@@ -1,0 +1,198 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="name">
+    <input type="number" id="contact">
+    <table id="apiDisplay" border="1px"></table>
+    <script>
+        let obj = {
+            name: document.getElementById("name").value,
+            contact: document.getElementById("contact").value
+        }
+        let jsn;
+        class display {
+            constructor(url, method) {
+                this.url = url
+                this.method = method
+
+            }
+            getData() {
+                fetch(url)
+                    .then(y => y.json())
+                    .then(y => {
+                        displayData(y)
+                        jsn = y;
+                    })
+            }
+            postData(obj) {
+                fetch(url, {
+                    method: "post",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+                    .then(y => {
+                        displayData(y)
+                    })
+            }
+            deleteData(obj) {
+                fetch(url, {
+                    method: "delete",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+                    .then(y => {
+                        displayData(y)
+                    })
+            }
+            putData(obj) {
+                fetch(url, {
+                    method: "put",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+                    .then(y => {
+                        displayData(y)
+                    })
+
+            }
+        }
+
+        class displayData extends display {
+            constructor(url, method) {
+                super(url)
+
+            }
+            
+            q =
+                url.map((v) => {
+
+                    return `<tr><td>${v.id}</td><td>${v.name}</td><td>${v.body}</td></tr>`
+
+                })
+
+
+
+        }
+
+        const p = new displayData("https://jsonplaceholder.typicode.com/comments")
+        document.getElementById("apiDisplay").innerHTML = p.q.join("")
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="name">
+    <input type="number" id="contact">
+    <button onclick="postData()">submit</button>
+    <table id="apiDisplay" border="1px"></table>
+    <script>
+        let url = "https://jsonplaceholder.typicode.com/comments";
+        let obj = {
+            name: document.getElementById("name").value,
+            contact: document.getElementById("contact").value
+        }
+        let jsn;
+        class display {
+            constructor(url, method) {
+                this.url = url
+                this.method = method
+            }
+            getData() {
+                fetch(this.url)
+                    .then(y => y.json())
+                    .then(y => {
+                        jsn = y;
+                        this.displayData(y);
+                    })
+            }
+            postData(obj) {
+                fetch(this.url, {
+                    method: "post",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+                    .then(y => {
+                        this.displayData(y);
+                    })
+            }
+            deleteData(obj) {
+                fetch(this.url, {
+                    method: "delete",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+
+
+                    
+                    .then(y => {
+                        this.displayData(y);
+                    })
+            }
+            putData(obj) {
+                fetch(this.url, {
+                    method: "put",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(obj)
+                })
+                    .then(y => y.json())
+                    .then(y => {
+                        this.displayData(y);
+                    })
+
+
+
+
+
+
+            }
+            displayData(data) {
+                const table = document.getElementById('apiDisplay');
+                const rows = data.map(v => `<tr><td>${v.id}</td><td>${v.name}</td><td>${v.body}</td></tr>`);
+                table.innerHTML = rows.join('');
+            }
+        }
+
+        const p = new display("https://jsonplaceholder.typicode.com/comments");
+        p.getData();
+    </script>
+</body>
+
+</html>

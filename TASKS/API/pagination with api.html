@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="searchTerm">
+    <table id="display" border="1px"></table>
+    <div id="button"></div>
+    <script>
+        let jsn;
+        let pageSize = 50
+        fetch("https://jsonplaceholder.typicode.com/photos")
+            .then(y => y.json())
+            .then(y => {
+                display(y, 0, pageSize)
+                jsn = y;
+                console.log(jsn)
+                buttons(y)
+
+            })
+
+        const display = (data, start, end) => {
+
+            let p = data.slice(start, end).map((v) => {
+                return `<tr><td>${v.albumId}</td><td>${v.id}</td><td>${v.title}</td><td>${v.url}</td><td>${v.thumbnailUrl}</td></tr>`
+            })
+            document.getElementById("display").innerHTML = p.join(" ")
+        }
+
+        let buttons = () => {
+
+            console.log(jsn)
+            let numberOfpage = jsn.length / pageSize
+            for (let i = 1; i <= numberOfpage; i++) {
+                let start = (i - 1) * pageSize
+                let end = start + pageSize
+                document.getElementById("button").innerHTML += `<button onclick="display(jsn,${start},${end})">${i}</button>`
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

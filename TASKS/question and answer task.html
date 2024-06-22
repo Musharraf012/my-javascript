@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="question"></div>
+  <!-- <div class="option"></div> -->
+  <!-- <div class="ans"></div> -->
+  <button onclick="sub()">submit</button>
+  <script>
+    let que = [
+      {
+        question: "What does the '=== 'operator do in JavaScript?",
+        options: [
+          "Checks for equality without type coercion",
+          "Checks for equality with type coercion",
+          "Assigns a value to a variable",
+          "Checks for inequality with type coercion",
+        ],
+        correct_answer: "Checks for equality without type coercion",
+      },
+      {
+        question:
+          "Which of the following is a correct way to comment in JavaScript?",
+        options: [
+          "// This is a comment",
+          "/* This is a comment */",
+          "# This is a comment",
+          "<!-- This is a comment -->",
+        ],
+        correct_answer: "// This is a comment",
+      },
+      {
+        question: "What does the 'typeof' operator in JavaScript return?",
+        options: [
+          "The type of a variable or expression",
+          "The memory address of a variable",
+          "The size of a variable in memory",
+          "The value of a variable",
+        ],
+        correct_answer: "The type of a variable or expression",
+      },
+      {
+        question:
+          "Which built-in method calls a function for each element in the array?",
+        options: ["forEach()", "each()", "loop()", "every()"],
+        correct_answer: "forEach()",
+      },
+      {
+        question: "What does CSS stand for?",
+        options: [
+          "Cascading Style Sheets",
+          "Creative Style Sheets",
+          "Computer Style Sheets",
+          "Colorful Style Sheets",
+        ],
+        correct_answer: "Cascading Style Sheets",
+      },
+    ];
+    let a = que.map((v, index) => {
+      return `<p style="margin-top: 60px">${v.question}</p>
+      <input type="radio" name="${index}"  value="${v.options[0]}">${v.options[0]}</input>
+      <input type="radio" name="${index}" value="${v.options[1]}">${v.options[1]}</input>
+      <input type="radio" name="${index}" value="${v.options[2]}">${v.options[2]}</input>
+      <input type="radio" name="${index}" value="${v.options[3]}">${v.options[3]}</input>
+      <div class="ans"></div>`;
+    });
+    document.querySelector(".question").innerHTML = a.join("");
+    // console.log(a);
+
+    function sub() {
+      let ans = document.querySelectorAll("input[type=radio]:checked");
+      console.log(ans);
+
+      let a = que.reduce((pre, v, index) => {
+        let radio = document.querySelector("input[type ='radio'] : checked");
+
+        console.log(radio.value);
+
+        if (v.correct_answer == radio.value) {
+          pre.push({ id: index, status: "correct" });
+        } else {
+          pre.push({ id: index, status: "incorrect" });
+        }
+        return pre;
+      }, []);
+
+      console.log(a);
+    }
+  </script>
+</body>
+
+</html>

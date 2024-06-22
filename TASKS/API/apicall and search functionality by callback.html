@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="searchComments"><button onclick="searchComments()"
+        style="background-color: blue; color: white;">Search</button>
+    <table id="comments" border="2px"></table>
+    <input type="text" id="searchPosts"><button onclick="searchPosts()"
+        style="background-color: blue; color: white;">Search</button>
+    <table id="posts" border="2px"></table>
+
+    <script>
+        let jsn1;
+        let jsn2;
+
+
+        const CallApi = (url, display) => {
+            fetch(url).then(y => y.json()).then(y => {
+                display(y)
+
+            })
+
+        }
+
+        const displayComments = (data) => {
+            jsn1 = data;
+            let p = data.map((v) => {
+                return `<tr><td>${v.postId}</td><td>${v.id}</td><td>${v.name}</td><td>${v.email}</td></tr>`
+            })
+            document.getElementById("comments").innerHTML = p.join(" ")
+        }
+
+        const displayPosts = (data) => {
+            jsn2 = data;
+            let p = data.map((v) => {
+                return `<tr><td>${v.userId}</td><td>${v.id}</td><td>${v.title}</td><td>${v.body}</td></tr>`
+            })
+            document.getElementById("posts").innerHTML = p.join(" ")
+        }
+        CallApi("https://jsonplaceholder.typicode.com/comments", displayComments)
+        CallApi("https://jsonplaceholder.typicode.com/posts", displayPosts)
+
+
+        const searchComments = () => {
+            let inpvalue = document.getElementById("searchComments").value;
+            console.log(jsn1)
+            let srchcmnt = jsn1.filter((v) => {
+
+                return v.email.includes(inpvalue)
+            })
+            displayComments(srchcmnt)
+
+        }
+        const searchPosts = () => {
+            let inpvaluepost = document.getElementById("searchPosts").value
+
+
+            let srchpost = jsn2.filter((value) => {
+
+                return value.body.includes(inpvaluepost)
+            })
+            displayPosts(srchpost)
+
+        }
+    </script>
+</body>
+
+</html>

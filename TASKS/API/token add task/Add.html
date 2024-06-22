@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="name">
+    <input type="text" id="avatar">
+    <input type="text" id="Result">
+    <input type="text" id="percentage">
+    <input type="text" id="id">
+    <button onclick="addItems()">Add</button>
+    <script>
+        let o = JSON.parse(localStorage.getItem("students"))
+        const addItems = () => {
+            let name = document.getElementById("name").value
+            let avatar = document.getElementById("avatar").value
+            let Result = document.getElementById("Result").value
+            let percentage = document.getElementById("percentage").value
+            let id = document.getElementById("id").value
+            let obj = {
+
+                "name": name,
+                "avatar": avatar,
+                "Result": Result,
+                "percentage": percentage,
+                "id": id
+            }
+            fetch("https://6603a1a62393662c31cf4e9b.mockapi.io/percentage", {
+                method: "post",
+                body: JSON.stringify(obj),
+                headers: {
+                    'content-type': "application/json"
+
+                }
+            })
+                .then(y => y.json())
+                .then(y => {
+                    o.push(obj)
+
+                    console.log(y)
+                })
+        }
+
+
+
+    </script>
+</body>
+
+</html>

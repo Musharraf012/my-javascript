@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp"><br><br>
+    <input type="text" id="start">
+    <input type="text" id="end"><br><br>
+    <button onclick="readMore()">Click me!</button>
+    <div id="display" onclick="readMore()"></div>
+    <script>
+       
+
+        
+        
+            let isReadmore = true
+        function readMore(){
+            let a = document.getElementById("inp").value
+            let b = +(document.getElementById("start").value)
+            let c = +(document.getElementById("end").value)
+    
+            if(isReadmore){
+                document.getElementById("display").innerHTML=a.slice(b,c).concat("...ReadMore")
+
+            }
+            else{
+                document.getElementById("display").innerHTML=a.concat("...ReadLess")
+            }
+            isReadmore = !isReadmore
+        }
+    </script>
+    
+</body>
+</html>

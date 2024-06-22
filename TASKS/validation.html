@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="">
+        <input type="text" placeholder="name" id="name" onkeypress="handleInput(event)" required><br>
+        <input type="email" placeholder="email" id="email"><br>
+
+        <input type="number" placeholder="contactNumber" id="contactNumber"><br>
+        <input type="password" placeholder="password" id="password"><br>
+        <input type="password" placeholder="ConfirmPassword" id="ConfirmPassword"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function handleInput(e) {
+            if ((e.key >= "a" && e.key <= "z") || (e.key >= "A" && e.key <= "Z")) {
+                e.returnValue = true
+            }
+            else {
+                e.returnValue = false
+            }
+        }
+    </script>
+</body>
+
+</html>

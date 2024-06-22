@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student data </title>
+</head>
+
+<body>
+    <h1>AMIT's RESULT</h1>
+    <input type="number" id="num1" placeholder="maths"><br>
+    <input type="number" id="num2" placeholder="english"><br>
+    <input type="number" id="num3" placeholder="science"><br>
+    <input type="number" id="num4" placeholder="social science"><br>
+    <input type="number" id="num5" placeholder="computer"><br><br>
+    <button onclick="total()">Total</button>
+    <button onclick="per()">Percentage</button>
+    <button onclick="resultt()">Result</button>
+
+    <div id="display1"></div>
+    <div id="display2"></div>
+    <div id="display3"></div>
+
+    <script>
+
+        let first,second,third,fourth,fifth=0;
+
+        let stotal =0;
+        let sper=0;
+        function getvalues()
+        {
+       first = +(document.getElementById("num1").value)
+         second = +(document.getElementById("num2").value)
+         third = +(document.getElementById("num3").value)
+         fourth = +(document.getElementById("num4").value)
+         fifth = +(document.getElementById("num5").value)
+
+        }
+
+        function total() {
+            // const first = +(document.getElementById("num1").value)
+            // const second = +(document.getElementById("num2").value)
+            // const third = +(document.getElementById("num3").value)
+            // const fourth = +(document.getElementById("num4").value)
+            // const fifth = +(document.getElementById("num5").value)
+            stotal =first + second + third + fourth + fifth
+
+            document.getElementById("display1").innerHTML = stotal;
+
+
+        }
+        function per() {
+            // const first = +(document.getElementById("num1").value)
+            // const second = +(document.getElementById("num2").value)
+            // const third = +(document.getElementById("num3").value)
+            // const fourth = +(document.getElementById("num4").value)
+            // const fifth = +(document.getElementById("num5").value)
+
+          
+            sper = ((stotal * 100) / 500);
+
+            document.getElementById("display2").innerHTML = sper;
+        }
+        function resultt() {
+            // const first = +(document.getElementById("num1").value)
+            // const second = +(document.getElementById("num2").value)
+            // const third = +(document.getElementById("num3").value)
+            // const fourth = +(document.getElementById("num4").value)
+            // const fifth = +(document.getElementById("num5").value)
+
+            getvalues();
+            total();
+            per();
+
+        
+
+            if (sper <= 33) {
+                document.getElementById("display3").innerHTML = "fail";
+            }
+            else {
+                document.getElementById("display3").innerHTML = "pass";
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

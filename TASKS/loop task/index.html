@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input1">
+    <input type="text" id="input2">
+    <input type="text" id="input3">
+    <input type="text" id="input4">
+
+    <button onclick="result()">Display Result</button>
+
+    <script>
+    //       function result(){
+    //     let inputs=document.getElementsByTagName("input")
+    //     let positive =inputs[0].value;
+       
+    //     for(i=0;i<inputs.length;i++){
+            
+
+    //         if(inputs[i].value>0){
+    //             positive=inputs[i].value;
+    //             console.log(alert(positive));
+    //         }
+           
+    //     }
+    // }
+
+    function result(){
+        let inputs=document.getElementsByTagName("input")
+        let inp1;
+        for(let i=0;i<inputs.length;i++){
+           
+            inp1 += inputs[i].value
+
+            if(inp1>0){
+                inp1 = +(inputs[0]+inputs[1]).value
+                
+                console.log(alert(inp1));
+            }
+           
+        }
+    }
+    </script>
+</body>
+</html>

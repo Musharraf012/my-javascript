@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Holidays</title>
+</head>
+
+<body>
+
+    <table id="ban" border="1px"></table>
+
+    <script>
+        // let Holidays;
+
+        // fetch('https://www.gov.uk/bank-holidays.json')
+        //     .then(y => y.json())
+        //     .then(y => {
+
+        //         Holidays = y['england-and-wales'].events;
+        //         console.log(Holidays)
+        //         displayData(Holidays)
+        //         sortData(Holidays)
+
+
+        //     })
+        // let displayData = (g) => {
+
+        //     let p = g.map((v) => {
+        //         return `<tr><td>${v.title}</td><td>${v.date}</td><td>${v.notes}</td><td>${v.bunting}</td></tr>`
+
+        //     })
+        //     document.getElementById("ban").innerHTML = p.join(" ")
+        // }
+
+        // function sortData(Holidays) {
+
+        //     Holidays.sort(function (a, b) {
+        //         console.log(a.date)
+        //         if (a.date > b.date) {
+        //             return 1
+        //         }
+        //         else {
+        //             return -1
+        //         }
+        //         displayData(Holidays)
+        //     })
+        // }
+        let jsn;
+
+        fetch("https://www.gov.uk/bank-holidays.json")
+            .then(y => y.json())
+            .then(y => {
+                let bank = y["england-and-wales"]["events"];
+                jsn = bank;
+
+                // bank.sort(function (a, b) {
+                //     return new Date(b.date) - new Date(a.date);
+                // });
+
+                //or
+
+                // bank.sort((a, b) => {
+                //     if (a.date > b.date) {
+                //         return -1
+                //     }
+                //     else {
+                //         return 1
+                //     }
+
+                // })
+
+                //or (using trinary operator)
+                // bank.sort((a, b) =>
+                //     a.date > b.date ? -1 : 1
+                // )
+
+                //or 
+                bank.sort(function (a, b) {
+                    return a.date > b.date ? -1 : 1
+                })
+                display(bank);
+            });
+
+        function display(a) {
+            let p = a.map((v) => {
+                return `<tr><td>${v.title}</td><td>${v.date}</td><td>${v.bunting}</td></tr>`
+            });
+            document.getElementById("ban").innerHTML = p.join(" ");
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

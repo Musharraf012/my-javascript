@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp"> <button id="searchType" onclick="searchItem()">search</button>
+    
+    <table id="display" border="2px"></table>
+    <script>
+       
+      let jsn;
+        fetch("https://fakestoreapi.com/products").then(y=>y.json()).then(y=>{
+            console.log(y)
+            display(y)
+            jsn=y;
+        })
+        function display(data){
+            let p = data.map((v)=>{
+                return `<tr><td>${v.id}</td><td>${v.title}</td><td>${v.price}</td></tr>`
+            })
+            document.getElementById("display").innerHTML=p.join(" ")
+        }
+        function searchItem(){
+            let inpvalue = document.getElementById("inp").value
+            let q = jsn.filter((b)=>{
+                return b.title.includes(inpvalue)
+            })
+            display(q)
+            console.log(jsn);
+        }
+        
+        
+    </script>
+</body>
+</html>

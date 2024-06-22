@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video id="vid" controls autoplay="autoplay" src="sd.mp4" onpause="test1(event)"></video>
+    <div id="demo"></div>
+    <script>
+
+        test()
+
+        function test() {
+
+
+            document.getElementById("vid").currentTime = localStorage.getItem("paused")
+        }
+        function test1(e) {
+            console.log(e)
+            document.getElementById("demo").innerHTML = "your video is paused"
+            localStorage.setItem("paused", event.target.currentTime)
+        }
+
+
+        //or
+
+
+    //     let vid = document.getElementById("vid")
+    //     vid.addEventListener("pause", function (v) {
+    //         sessionStorage.setItem("time", v.target.currentTime)
+    //           console.log(vid); 
+    //     })
+
+    //     vid.addEventListener("play", function (v) {
+    //         let p = sessionStorage.getItem("time")
+    //           console.log(vid);
+
+    //         v.target.currentTime = p;
+    //     })
+    // </script>
+
+</body>
+
+</html>

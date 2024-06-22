@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="india">
+    <select id="se">
+        <option >AUSTRALIA</option>
+        <option >CANADA</option>
+        <option >DUBAI</option>
+    </select>
+    
+    <button onclick="result()">Display curruncy</button>
+    <div id="display"></div>
+    <script>
+        function result(){
+            let indiancurruncy = +(document.getElementById("india").value)
+            
+            
+            if(document.getElementById("se").value=="AUSTRALIA"){
+                document.getElementById("display").innerHTML=+(indiancurruncy/63.22).toFixed(2);
+
+            }
+            else if(document.getElementById("se").value=="CANADA"){
+                document.getElementById("display").innerHTML=+(indiancurruncy/90.22).toFixed(2)
+
+            }
+           else if(document.getElementById("se").value=="DUBAI"){
+                document.getElementById("display").innerHTML=+(indiancurruncy/100.22).toFixed(2)
+
+            }
+
+        }
+
+        // function result(){
+        //     let indiancurruncy = +(document.getElementById("india").value)
+        //     let array = ["AUSTRALIA","CANADA","DUBAI"]
+        //     for(i=0;i<array.length;i++){
+        //             if(array[i]=="AUSTRALIA"){
+        //                 document.getElementById("display").innerHTML=+(indiancurruncy/63.22).toFixed(2);
+        //             }
+
+        //           else if(array[i]=="CANADA"){
+        //                 document.getElementById("display").innerHTML=+(indiancurruncy/90.22).toFixed(2);
+        //             }
+        //           else if(array[i]=="DUBAI"){
+        //                 document.getElementById("display").innerHTML=+(indiancurruncy/100.22).toFixed(2);
+        //             }
+        //     }
+        // }
+    </script>
+    
+</body>
+</html> 

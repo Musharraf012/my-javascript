@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let dp = ["mk", "ak", "kjh", "mk", "dp", "ak"]
+        let p1 = dp.reduce(function (pre, value) {
+            if (pre.includes(value) == false) {
+                pre.push(value)
+            }
+            return pre;
+        }, [])
+        document.write(p1)
+
+
+        //or
+
+        
+        let q = new Set(dp)
+        console.log(q)
+
+    </script>
+</body>
+
+</html>

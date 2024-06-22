@@ -1,0 +1,86 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Number Of Movie Tickets = <input type="text" id="ticket"> <button onclick="addTicket()">Click!</button>
+    <div id="display"></div>
+
+    <script>
+
+        let form ={
+            Name:
+        }
+        let o = []
+
+        function addTicket() {
+            let obj = {
+                Name: document.getElementById("").value,
+                Email: document.getElementById("").value,
+            }
+            o.push(obj)
+            document.getElementById("display").innerHTML = o
+
+        }
+    </script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form</title>
+</head>
+
+<body>
+
+    <form id="ticketForm">
+        <label for="numberOfTickets">Number Of Movie Tickets:</label>
+        <input type="number" id="numberOfTickets" name="numberOfTickets">
+        <div id="ticketDetails"></div>
+        <button type="button" id="saveButton">Save</button>
+    </form>
+
+    <script>
+        document.getElementById('numberOfTickets').addEventListener('input', function () {
+            var numberOfTickets = +(this.value);
+            var ticketDetailsContainer = document.getElementById('ticketDetails');
+            ticketDetailsContainer.innerHTML = '';
+
+            for (var i = 0; i < numberOfTickets; i++) {
+                var ticketDiv = document.createElement('div');
+                ticketDiv.innerHTML = `
+            <label">Name:</label>
+            <input type="text" id="name${i}">
+            <label >Email:</label>
+            <input type="email" id="email${i}">
+        `;
+                ticketDetailsContainer.appendChild(ticketDiv);
+            }
+        });
+
+        document.getElementById('saveButton').addEventListener('click', function () {
+            var numberOfTickets = +(document.getElementById('numberOfTickets').value);
+            var ticketData = [];
+
+            for (var i = 0; i < numberOfTickets; i++) {
+                var name = document.getElementById(`name${i}`).value;
+                var email = document.getElementById(`email${i}`).value;
+                ticketData.push({ name: name, email: email });
+            }
+
+            console.log(ticketData);
+        });
+    </script>
+
+</body>
+
+</html>
